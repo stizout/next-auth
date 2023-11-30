@@ -25,7 +25,7 @@ export const {
   callbacks: {
     // fixing bug in nextauth
     async session({ session, user }: any) {
-      console.log("hit here?");
+      console.log("Hitting auth callback");
       if (session && user) {
         session.user.id = user.id;
       }

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Providers from "@/app/providers";
+import Link from "next/link";
+import paths from "@/paths";
+import Header from "@/components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,7 +21,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          <div>
+            <Link href={paths.home()}>Home</Link>
+            <Link href={paths.topicShow("123")}>Topic</Link>
+            <Link href={paths.postCreate("123")}>Create</Link>
+            <Link href={paths.postShow("123", "123")}>Post</Link>
+          </div>
+          {children}
+        </Providers>
       </body>
     </html>
   );
