@@ -1,7 +1,12 @@
-"use server";
-import { auth } from "@/auth";
-import Profile from "@/components/profile";
-export default async function Home() {
-  const session = await auth();
-  return <div>Home Page</div>;
+import TopicCreateForm from "@/components/topic-create-form";
+
+export default function Home() {
+  return (
+    <div className="grid grid-cols-4 gap-4 p-4">
+      <div className="col-span-3">
+        <h1 className="text-xl m-2">Top Posts</h1>
+      </div>
+      <TopicCreateForm />
+    </div>
+  );
 }
