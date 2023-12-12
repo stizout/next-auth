@@ -45,6 +45,7 @@ export async function createTopic(
     };
   }
   let topic: Topic;
+  console.log("new topic\n", result);
   try {
     topic = await db.topic.create({
       data: {

@@ -41,7 +41,7 @@ export default function HeaderAuth() {
         </NavbarItem>
         <form action={actions.signOut}>
           <Button type="submit" color="primary" variant="flat">
-            Sign In
+            Sign Out
           </Button>
         </form>
         <NavbarItem></NavbarItem>
