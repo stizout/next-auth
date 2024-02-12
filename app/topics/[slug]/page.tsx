@@ -1,11 +1,20 @@
 import PostCreateForm from '@/components/post-create-form';
 import PostList from '@/components/post-list';
+import { db } from '@/db';
 import { fetchPostsByTopic } from '@/db/queries/post';
 
 interface TopicShowPropss {
 	params: {
 		slug: string;
 	};
+}
+
+export async function generateStaticParams() {
+	const topics = await db.topic.findMany();
+
+	return topics.map((topic) => ({
+		slug: topic.slug,
+	}));
 }
 
 const Topic = ({ params: { slug } }: TopicShowPropss) => {

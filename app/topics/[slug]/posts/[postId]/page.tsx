@@ -4,6 +4,7 @@ import CommentList from '@/components/comment-list';
 import CommentCreateForm from '@/components/comment-create-form';
 import paths from '@/paths';
 import { fetchComments } from '@/db/queries/comments';
+import { db } from '@/db';
 
 interface PostShowPageProps {
 	params: {
@@ -12,9 +13,24 @@ interface PostShowPageProps {
 	};
 }
 
+export async function generateStaticParams() {
+	const topics = await db.topic.findMany({
+		include: {
+			posts: {
+				select: {
+					id: true,
+				},
+			},
+		},
+	});
+
+	return topics.map((topic) => ({
+		slug: topic.slug,
+	}));
+}
+
 export default async function PostShowPage({ params }: PostShowPageProps) {
 	const { slug, postId } = params;
-	const comments = await fetchComments(postId);
 	return (
 		<div className='space-y-3'>
 			<Link
